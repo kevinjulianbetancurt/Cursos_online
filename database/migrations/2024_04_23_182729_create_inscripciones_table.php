@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('inscripciones', function (Blueprint $table) {
             $table->id('id_inscripciones')->unique();
-            $table->integer('id_cursos');
-            $table->integer('id_instructores');
-            $table->integer('id_estudiantes');
+            $table->foreign('id_cursos');
+            $table->foreign('id_instructores');
+            $table->foreign('id_estudiantes');
             $table->date('fecha_inscripcion');
             $table->timestamps();
         });
