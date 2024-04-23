@@ -16,6 +16,7 @@
 <body>
     <div class="container">
         <h1>LISTADO DE CURSOS</h1>
+        <a href="{{ route('curso.create') }}" class="btn btn-success">Añadir</a>
         <table class="table">
             <thead>
                 <tr>
@@ -36,7 +37,7 @@
                         <td>{{ $curso->descripción}}</td>
                         <td>{{ $curso->duración}}</td>
                         <td>{{ $curso->precio}}</td>
-                        <td>{{ $curso->categoría}}</td>
+                        <td>{{ $curso->categoria}}</td>
                         <td><span> Actions </span></td>
                     </tr>
                 @endforeach

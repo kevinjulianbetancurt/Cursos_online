@@ -28,7 +28,7 @@ class CursosController extends Controller
     {
         $cursos = DB::table('cursos')
         ->get();
-        return view('curso.add', ['cursos' => $cursos]);
+        return view('curso.new', ['cursos' => $cursos]);
     }
 
     /**
@@ -39,15 +39,17 @@ class CursosController extends Controller
      */
     public function store(Request $request)
     {
-        $cursos = new Cursos();       
-        $cursos->título=$request->name;
-        $cursos->descripción=$request->name;
-        $cursos->duración=$request->int;
-        $cursos->precio=$request->int;
-        $cursos->categoría=$request->name;
-        $cursos->save();
+        $curso = new Cursos();    
+        $curso->titulo=$request->título;
+        $curso->descripción=$request->descripción;
+        $curso->duración=$request->duración;
+        $curso->precio=$request->precio;
+        $curso->categoria=$request->categoría;
+        $curso->save();
 
-       return view('curso.index', ['cursos' => $cursos]);
+        $cursos = Cursos::all();
+
+       return view('curso.index', ['cursos'=> $cursos]);
     }
 
     /**

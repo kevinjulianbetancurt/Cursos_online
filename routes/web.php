@@ -18,4 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/cursos', [CursosController::class, 'index']);
+Route::get('/cursos', [CursosController::class, 'index'])->name('curso.index');
+Route::post('/cursos', [CursosController::class, 'store'])->name('curso.store');
+Route::get('/cursos/create', [CursosController::class, 'create'])->name('curso.create');
+
+
