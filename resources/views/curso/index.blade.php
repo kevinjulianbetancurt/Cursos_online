@@ -38,7 +38,17 @@
                         <td>{{ $curso->duración}}</td>
                         <td>{{ $curso->precio}}</td>
                         <td>{{ $curso->categoria}}</td>
-                        <td><span> Actions </span></td>
+                        <td>
+                            <a href="{{ route('curso.edit', ['curso' => $curso->id_cursos]) }}" class="btn btn-info">
+                                Editar </a></li>
+                                
+                        <form action="{{ route('curso.destroy', ['curso' => $curso->id_cursos]) }}"
+                            method='POST' style="display: inline-block">
+                            @method('delete')
+                            @csrf
+                            <input class="btn btn-danger" type="submit" value="Eliminar">
+                        </form>
+                       </td>
                     </tr>
                 @endforeach
             </tbody>
