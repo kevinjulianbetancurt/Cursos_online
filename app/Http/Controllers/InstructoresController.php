@@ -71,7 +71,7 @@ class InstructoresController extends Controller
     public function edit($id)
     {
         $instructor = Instructores::find($id);
-        $instructores = DB::table('cursos')
+        $instructores = DB::table('instructores')
         ->get();
         return view('instructor.edit', ['instructor' => $instructor , 'instructores' => $instructores]);
     }
