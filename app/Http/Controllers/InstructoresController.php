@@ -15,8 +15,8 @@ class InstructoresController extends Controller
      */
     public function index()
     {
-        $Intructores = Instructores::all();
-        return view('Intructor.index', ['Intructores' => $Intructores]);
+        $intructores = Instructores::all();
+        return view('instructor.index', ['intructores' => $intructores]);
     }
 
     /**
@@ -26,9 +26,9 @@ class InstructoresController extends Controller
      */
     public function create()
     {
-        $Instructores = DB::table('Instructores')
+        $instructores = DB::table('instructores')
         ->get();
-        return view('Instructor.new', ['Instructores' => $Instructores]);
+        return view('instructor.new', ['instructores' => $instructores]);
     }
 
     /**
@@ -39,17 +39,16 @@ class InstructoresController extends Controller
      */
     public function store(Request $request)
     {
-        $Instructor = new Instructores();    
-        $Instructor->titulo=$request->título;
-        $Instructor->descripción=$request->descripción;
-        $Instructor->duración=$request->duración;
-        $Instructor->precio=$request->precio;
-        $Instructor->categoria=$request->categoría;
-        $Instructor->save();
+        $instructor = new Instructores();    
+        $instructor->nombre=$request->nombre;
+        $instructor->apellido=$request->apellido;
+        $instructor->especialidad=$request->especialidad;
+        $instructor->biografía=$request->biografía;
+        $instructor->save();
 
-        $Instructores = Instructores::all();
+        $instructores = Instructores::all();
 
-       return view('Instructor.index', ['Instructores'=> $Instructores]);
+       return view('instructor.index', ['instructores'=> $instructores]);
     }
 
     /**
