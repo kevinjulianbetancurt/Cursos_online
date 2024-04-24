@@ -29,3 +29,6 @@ Route::get('/cursos/{curso}/edit', [CursosController::class, 'edit'])->name('cur
 Route::get('/instructores', [InstructoresController::class, 'index'])->name('instructor.index');
 Route::post('/instructores', [InstructoresController::class, 'store'])->name('instructor.store');
 Route::get('/instructores/create', [InstructoresController::class, 'create'])->name('instructor.create');
+Route::delete('/instructores/{instructor}', [InstructoresController::class, 'destroy'])->name('instructor.destroy');
+Route::put('/instructores/{instructor}', [InstructoresController::class, 'update'])->name('instructor.update');
+Route::get('/instructores/{instructor}/edit', [InstructoresController::class, 'edit'])->name('instructor.edit');

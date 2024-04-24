@@ -37,6 +37,15 @@
                         <td>{{ $instructor->especialidad}}</td>
                         <td>{{ $instructor->biografía}}</td>
                         <td>
+                            <a href="{{ route('instructor.edit', ['instructor' => $instructor->id_instructores]) }}" class="btn btn-info">
+                                Editar </a></li>
+                                
+                        <form action="{{ route('instructor.destroy', ['instructor' => $instructor->id_instructores]) }}"
+                            method='POST' style="display: inline-block">
+                            @method('delete')
+                            @csrf
+                            <input class="btn btn-danger" type="submit" value="Eliminar">
+                        </form>
                            
                        </td>
                     </tr>

@@ -15,8 +15,8 @@ class InstructoresController extends Controller
      */
     public function index()
     {
-        $intructores = Instructores::all();
-        return view('instructor.index', ['intructores' => $intructores]);
+        $instructores = Instructores::all();
+        return view('instructor.index', ['instructores' => $instructores]);
     }
 
     /**
@@ -70,7 +70,10 @@ class InstructoresController extends Controller
      */
     public function edit($id)
     {
-        //
+        $instructor = Instructores::find($id);
+        $instructores = DB::table('cursos')
+        ->get();
+        return view('instructor.edit', ['instructor' => $instructor , 'instructores' => $instructores]);
     }
 
     /**
@@ -82,7 +85,16 @@ class InstructoresController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $instructor = Instructores::find($id);    
+        $instructor->nombre=$request->nombre;
+        $instructor->apellido=$request->apellido;
+        $instructor->especialidad=$request->especialidad;
+        $instructor->biografía=$request->biografía;
+        $instructor->save();
+
+        $instructores = Instructores::all();
+
+        return view('instructor.index', ['instructores'=> $instructores]);
     }
 
     /**
@@ -93,6 +105,11 @@ class InstructoresController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $instructor = Instructores::find($id);
+        $instructor->delete();
+
+        $instructores = Instructores::all();
+
+        return view('instructor.index', ['instructores' => $instructores]);
     }
 }
