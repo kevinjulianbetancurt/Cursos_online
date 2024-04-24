@@ -86,11 +86,10 @@ class EstudiantesController extends Controller
     public function update(Request $request, $id)
     {
         $estudiante = Estudiantes::find($id);   
-        $estudiante->titulo=$request->título;
-        $estudiante->descripción=$request->descripción;
-        $estudiante->duración=$request->duración;
-        $estudiante->precio=$request->precio;
-        $estudiante->categoria=$request->categoría;
+        $estudiante->nombre=$request->nombre;
+        $estudiante->apellido=$request->apellido;
+        $estudiante->email=$request->email;
+        $estudiante->nivel_educativo=$request->nivel_educativo;
         $estudiante->save();
 
         $estudiantes = Estudiantes::all();

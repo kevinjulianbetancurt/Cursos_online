@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CursosController;
 use App\Http\Controllers\InstructoresController;
+use App\Http\Controllers\EstudiantesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,3 +33,10 @@ Route::get('/instructores/create', [InstructoresController::class, 'create'])->n
 Route::delete('/instructores/{instructor}', [InstructoresController::class, 'destroy'])->name('instructor.destroy');
 Route::put('/instructores/{instructor}', [InstructoresController::class, 'update'])->name('instructor.update');
 Route::get('/instructores/{instructor}/edit', [InstructoresController::class, 'edit'])->name('instructor.edit');
+
+Route::get('/estudiantes', [EstudiantesController::class, 'index'])->name('estudiante.index');
+Route::post('/estudiantes', [EstudiantesController::class, 'store'])->name('estudiante.store');
+Route::get('/estudiantes/create', [EstudiantesController::class, 'create'])->name('estudiante.create');
+Route::delete('/estudiantes/{estudiante}', [EstudiantesController::class, 'destroy'])->name('estudiante.destroy');
+Route::put('/estudiantes/{estudiante}', [EstudiantesController::class, 'update'])->name('estudiante.update');
+Route::get('/estudiantes/{estudiante}/edit', [EstudiantesController::class, 'edit'])->name('estudiante.edit');
