@@ -102,7 +102,25 @@ class InscripcionesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $inscripcion = Inscripciones::find($id);
+
+        $inscripcionescurso = DB::table('cursos')
+        ->orderBy('id_cursos')
+        ->get();
+
+        $inscripcionesinstructores = DB::table('instructores')
+        ->orderBy('id_instructores')
+        ->get();
+
+        $inscripcionesestudiantes = DB::table('estudiantes')
+        ->orderBy('id_estudiantes')
+        ->get();
+
+        
+        return view('inscripcion.new', ['inscripcion'=> $inscripcion,
+                                        'inscripcionescurso' => $inscripcionescurso, 
+                                        'inscripcionesinstructores' => $inscripcionesinstructores,
+                                        'inscripcionesestudiantes' => $inscripcionesestudiantes]);
     }
 
     /**
@@ -114,7 +132,25 @@ class InscripcionesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $inscripcion = Inscripciones::find($id);
+        $inscripcion->id_cursos=$request->id_cursos;
+        $inscripcion->id_instructores=$request->id_instructores;
+        $inscripcion->id_estudiantes=$request->id_estudiantes;
+        $inscripcion->fecha_inscripcion=$request->fecha_inscripcion;
+        $inscripcion->save();
+
+        $inscripciones = DB::table('inscripciones')
+        ->join('cursos', 'inscripciones.id_cursos', '=', 'cursos.id_cursos')
+        ->select('inscripciones.*',"cursos.id_cursos")
+
+        ->join('instructores', 'inscripciones.id_instructores', '=', 'instructores.id_instructores')
+        ->select('inscripciones.*',"instructores.id_instructores")
+
+        ->join('estudiantes', 'inscripciones.id_estudiantes', '=', 'estudiantes.id_estudiantes')
+        ->select('inscripciones.*',"estudiantes.id_estudiantes")
+        ->get();
+
+        return view('inscripcion.index', ['inscripciones'=> $inscripciones]);
     }
 
     /**
@@ -125,6 +161,11 @@ class InscripcionesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $inscripcion = Inscripciones::find($id);
+        $inscripcion->delete();
+
+        $inscripciones = Inscripciones::all();
+
+        return view('inscripcion.index', ['inscripciones' => $inscripciones]);
     }
 }
