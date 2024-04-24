@@ -117,7 +117,7 @@ class InscripcionesController extends Controller
         ->get();
 
         
-        return view('inscripcion.new', ['inscripcion'=> $inscripcion,
+        return view('inscripcion.edit', ['inscripcion'=> $inscripcion,
                                         'inscripcionescurso' => $inscripcionescurso, 
                                         'inscripcionesinstructores' => $inscripcionesinstructores,
                                         'inscripcionesestudiantes' => $inscripcionesestudiantes]);
