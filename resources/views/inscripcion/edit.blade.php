@@ -21,33 +21,33 @@
             @csrf
 
             <div class="mb-3">
-                <label for="codigo" class="form-label">Id Curso</label>
+                <label for="codigo" class="form-label">Id Inscripcion</label>
                 <input type="text" class="form-control" id="id" aria-describedby="codigoHelp" name="id"
                     disabled="disabled" value="{{ $inscripcion->id_inscripciones }}" id="codigoHelp" 
                     class="form-text">
             </div>
 
-            <label for="id_cursos">municipality</label>
+            <label for="id_cursos">Titulo</label>
             <select class="form-select" id="id_cursos" name="id_cursos" required>
            <option selected disabled value="">Choose one...</option>
             @foreach ($inscripcionescurso as $inscripcioncurso)
-           <option value="{{$inscripcioncurso->id_cursos}}">{{$inscripcioncurso->id_cursos}}</option>
+           <option value="{{$inscripcioncurso->id_cursos}}">{{$inscripcioncurso->titulo}}</option>
             @endforeach
             </select>
   
-           <label for="id_instructores">municipality</label>
+           <label for="id_instructores">Nombre Instructores</label>
             <select class="form-select" id="id_instructores" name="id_instructores" required>
            <option selected disabled value="">Choose one...</option>
            @foreach ($inscripcionesinstructores as $inscripcioninstructor)
-           <option value="{{$inscripcioninstructor->id_instructores}}">{{$inscripcioninstructor->id_instructores}}</option>
+           <option value="{{$inscripcioninstructor->id_instructores}}">{{$inscripcioninstructor->nombre}}</option>
            @endforeach
             </select>
 
-           <label for="id_estudiantes">municipality</label>
+           <label for="id_estudiantes">Nombre Estudiantes</label>
             <select class="form-select" id="id_estudiantes" name="id_estudiantes" required>
            <option selected disabled value="">Choose one...</option>
            @foreach ($inscripcionesestudiantes as $inscripcionestudiante)
-           <option value="{{$inscripcionestudiante->id_estudiantes}}">{{$inscripcionestudiante->id_estudiantes}}</option>
+           <option value="{{$inscripcionestudiante->id_estudiantes}}">{{$inscripcionestudiante->nombre}}</option>
            @endforeach
             </select>
 

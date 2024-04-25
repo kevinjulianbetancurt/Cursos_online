@@ -1,26 +1,25 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<x-app-layout>
+  <x-slot name="header">
+  <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+  {{ __('Inscripciones') }}
+  </h2>
+  </x-slot>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <title>Inscripciones List</title>
-  </head>
-  <body>
-    <div class="container">
+  <div class="py-12">
+      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+      <div class="p-6 text-gray-900">
+      <div class="container">
       <h1>LISTADO DE INSCRIPCIONES</h1>
-      <a href="{{ route('inscripcion.create') }}" class="btn btn-seccess">Add</a>
+      <a href="{{ route('inscripcion.create') }}" class="bg-green-700 hover:bg-green-900 text-white
+      font-bold py-2 px-4 rounded ml-2">Añadir</a>
     <table class="table">
    <thead>
      <tr>
      <th scope="col">id_inscripciones</th>
-     <th scope="col">id_cursos</th>
-     <th scope="col">id_instructores</th>
-     <th scope="col">id_estudiantes</th>
+     <th scope="col">titulo</th>
+     <th scope="col">nombre_instructores</th>
+     <th scope="col">nombre_estudiantes</th>
      <th scope="col">Fecha-Inscripción</th>
      <th scope="col">Actions</th>
       </tr>
@@ -29,19 +28,25 @@
       @foreach ($inscripciones as $inscripcion)
         <tr>
           <th scope="row">{{$inscripcion->id_inscripciones}}</th>
-          <td>{{ $inscripcion->id_cursos }}</td>
-          <td>{{ $inscripcion->id_instructores }}</td>
-          <td>{{ $inscripcion->id_estudiantes }}</td>
+          <td>{{ $inscripcion->titulo }}</td>
+          @foreach ($instructores as $instructor)
+          <td>{{ $instructor->nombre }}</td>
+          @endforeach
+          @foreach ($estudiantes as $estudiante)
+          <td>{{ $estudiante->nombre }}</td>
+          @endforeach
           <td>{{ $inscripcion->fecha_inscripcion }}</td>
           <td>
-            <a href="{{ route('inscripcion.edit', ['inscripcion' => $inscripcion->id_inscripciones]) }}" class="btn btn-info">
+            <a href="{{ route('inscripcion.edit', ['inscripcion' => $inscripcion->id_inscripciones]) }}" class="bg-blue-500
+              hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
               Editar </a></li>
               
               <form action="{{ route('inscripcion.destroy', ['inscripcion' => $inscripcion->id_inscripciones]) }}"
                method='POST' style="display: inline-block">
                @method('delete')
                @csrf
-              <input class="btn btn-danger" type="submit" value="Eliminar">
+              <input class="bg-red-500
+              hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2" type="submit" value="Eliminar">
               </form>
           </td>
          </tr>
@@ -49,11 +54,8 @@
     </tbody>
  </table>
 </div>
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-  </body>
-</html>
+</div>
+</div>
+</div>
+</div>
+</x-app-layout>
