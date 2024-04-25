@@ -8,35 +8,35 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Add Inscripciones</title>
+    <title>ADD Inscripciones</title>
   </head>
   <body>
     <div class="container">
-        <h1>Add INSCRIPCIONES</h1>  
+        <h1>ADD INSCRIPCIONES</h1>  
         <form method="POST" action="{{route('inscripcion.store')}}">
          @csrf
 
-             <label for="id_cursos">municipality</label>
+             <label for="id_cursos">Titulo</label>
              <select class="form-select" id="id_cursos" name="id_cursos" required>
             <option selected disabled value="">Choose one...</option>
              @foreach ($inscripcionescurso as $inscripcioncurso)
-            <option value="{{$inscripcioncurso->id_cursos}}">{{$inscripcioncurso->id_cursos}}</option>
+            <option value="{{$inscripcioncurso->id_cursos}}">{{$inscripcioncurso->titulo}}</option>
              @endforeach
              </select>
    
-            <label for="id_instructores">municipality</label>
+            <label for="id_instructores">Nombre Instructores</label>
              <select class="form-select" id="id_instructores" name="id_instructores" required>
             <option selected disabled value="">Choose one...</option>
             @foreach ($inscripcionesinstructores as $inscripcioninstructor)
-            <option value="{{$inscripcioninstructor->id_instructores}}">{{$inscripcioninstructor->id_instructores}}</option>
+            <option value="{{$inscripcioninstructor->id_instructores}}">{{$inscripcioninstructor->nombre}}</option>
             @endforeach
              </select>
 
-            <label for="id_estudiantes">municipality</label>
+            <label for="id_estudiantes">Nombre Estudiantes</label>
              <select class="form-select" id="id_estudiantes" name="id_estudiantes" required>
             <option selected disabled value="">Choose one...</option>
             @foreach ($inscripcionesestudiantes as $inscripcionestudiante)
-            <option value="{{$inscripcionestudiante->id_estudiantes}}">{{$inscripcionestudiante->id_estudiantes}}</option>
+            <option value="{{$inscripcionestudiante->id_estudiantes}}">{{$inscripcionestudiante->nombre}}</option>
             @endforeach
              </select>
 
@@ -49,7 +49,7 @@
 
             <div class="mt-3">
            <button type="submit" class="btn btn-primary">Save</button>
-           <a href="{[route('comunas.index')]}" class="btn btn-warning"></a>
+           <a href="{{route('inscripcion.index')}}" class="btn btn-warning">Cancel</a>
             </div>
           </form>
     </div>

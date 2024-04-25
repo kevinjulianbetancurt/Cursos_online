@@ -13,14 +13,14 @@
   <body>
     <div class="container">
       <h1>LISTADO DE INSCRIPCIONES</h1>
-      <a href="{{ route('inscripcion.create') }}" class="btn btn-seccess">Add</a>
+      <a href="{{ route('inscripcion.create') }}" class="btn btn-success">Add</a>
     <table class="table">
    <thead>
      <tr>
      <th scope="col">id_inscripciones</th>
-     <th scope="col">id_cursos</th>
-     <th scope="col">id_instructores</th>
-     <th scope="col">id_estudiantes</th>
+     <th scope="col">titulo</th>
+     <th scope="col">nombre_instructores</th>
+     <th scope="col">nombre_estudiantes</th>
      <th scope="col">Fecha-Inscripción</th>
      <th scope="col">Actions</th>
       </tr>
@@ -29,9 +29,13 @@
       @foreach ($inscripciones as $inscripcion)
         <tr>
           <th scope="row">{{$inscripcion->id_inscripciones}}</th>
-          <td>{{ $inscripcion->id_cursos }}</td>
-          <td>{{ $inscripcion->id_instructores }}</td>
-          <td>{{ $inscripcion->id_estudiantes }}</td>
+          <td>{{ $inscripcion->titulo }}</td>
+          @foreach ($instructores as $instructor)
+          <td>{{ $instructor->nombre }}</td>
+          @endforeach
+          @foreach ($estudiantes as $estudiante)
+          <td>{{ $estudiante->nombre }}</td>
+          @endforeach
           <td>{{ $inscripcion->fecha_inscripcion }}</td>
           <td>
             <a href="{{ route('inscripcion.edit', ['inscripcion' => $inscripcion->id_inscripciones]) }}" class="btn btn-info">

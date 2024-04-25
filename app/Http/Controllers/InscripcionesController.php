@@ -18,15 +18,22 @@ class InscripcionesController extends Controller
         //$cursos = Cursos::all();
         $inscripciones = DB::table('inscripciones')
         ->join('cursos', 'inscripciones.id_cursos', '=', 'cursos.id_cursos')
-        ->select('inscripciones.*',"cursos.id_cursos")
-
-        ->join('instructores', 'inscripciones.id_instructores', '=', 'instructores.id_instructores')
-        ->select('inscripciones.*',"instructores.id_instructores")
-
-        ->join('estudiantes', 'inscripciones.id_estudiantes', '=', 'estudiantes.id_estudiantes')
-        ->select('inscripciones.*',"estudiantes.id_estudiantes")
+        ->select('inscripciones.*',"cursos.titulo")
         ->get();
-        return view('inscripcion.index', ['inscripciones' => $inscripciones]);
+
+        $instructores= DB::table('inscripciones')
+        ->join('instructores', 'inscripciones.id_instructores', '=', 'instructores.id_instructores')
+        ->select('inscripciones.*',"instructores.nombre")
+        ->get();
+        
+        $estudiantes= DB::table('inscripciones')
+        ->join('estudiantes', 'inscripciones.id_estudiantes', '=', 'estudiantes.id_estudiantes')
+        ->select('inscripciones.*',"estudiantes.nombre")
+        ->get();
+
+        return view('inscripcion.index', ['inscripciones' => $inscripciones,
+                                          'instructores' =>$instructores,
+                                          'estudiantes'=>$estudiantes]);
     }
 
     /**
@@ -37,15 +44,15 @@ class InscripcionesController extends Controller
     public function create()
     {
         $inscripcionescurso = DB::table('cursos')
-        ->orderBy('id_cursos')
+        ->orderBy('titulo')
         ->get();
 
         $inscripcionesinstructores = DB::table('instructores')
-        ->orderBy('id_instructores')
+        ->orderBy('nombre')
         ->get();
 
         $inscripcionesestudiantes = DB::table('estudiantes')
-        ->orderBy('id_estudiantes')
+        ->orderBy('nombre')
         ->get();
 
         
@@ -71,16 +78,22 @@ class InscripcionesController extends Controller
 
         $inscripciones = DB::table('inscripciones')
         ->join('cursos', 'inscripciones.id_cursos', '=', 'cursos.id_cursos')
-        ->select('inscripciones.*',"cursos.id_cursos")
-
-        ->join('instructores', 'inscripciones.id_instructores', '=', 'instructores.id_instructores')
-        ->select('inscripciones.*',"instructores.id_instructores")
-
-        ->join('estudiantes', 'inscripciones.id_estudiantes', '=', 'estudiantes.id_estudiantes')
-        ->select('inscripciones.*',"estudiantes.id_estudiantes")
+        ->select('inscripciones.*',"cursos.titulo")
         ->get();
 
-       return view('inscripcion.index', ['inscripciones'=> $inscripciones]);
+        $instructores= DB::table('inscripciones')
+        ->join('instructores', 'inscripciones.id_instructores', '=', 'instructores.id_instructores')
+        ->select('inscripciones.*',"instructores.nombre")
+        ->get();
+        
+        $estudiantes= DB::table('inscripciones')
+        ->join('estudiantes', 'inscripciones.id_estudiantes', '=', 'estudiantes.id_estudiantes')
+        ->select('inscripciones.*',"estudiantes.nombre")
+        ->get();
+
+       return view('inscripcion.index', ['inscripciones' => $inscripciones,
+                                         'instructores' =>$instructores,
+                                         'estudiantes'=>$estudiantes]);
     }
 
     /**
@@ -105,15 +118,15 @@ class InscripcionesController extends Controller
         $inscripcion = Inscripciones::find($id);
 
         $inscripcionescurso = DB::table('cursos')
-        ->orderBy('id_cursos')
+        ->orderBy('titulo')
         ->get();
 
         $inscripcionesinstructores = DB::table('instructores')
-        ->orderBy('id_instructores')
+        ->orderBy('nombre')
         ->get();
 
         $inscripcionesestudiantes = DB::table('estudiantes')
-        ->orderBy('id_estudiantes')
+        ->orderBy('nombre')
         ->get();
 
         
@@ -141,16 +154,22 @@ class InscripcionesController extends Controller
 
         $inscripciones = DB::table('inscripciones')
         ->join('cursos', 'inscripciones.id_cursos', '=', 'cursos.id_cursos')
-        ->select('inscripciones.*',"cursos.id_cursos")
-
-        ->join('instructores', 'inscripciones.id_instructores', '=', 'instructores.id_instructores')
-        ->select('inscripciones.*',"instructores.id_instructores")
-
-        ->join('estudiantes', 'inscripciones.id_estudiantes', '=', 'estudiantes.id_estudiantes')
-        ->select('inscripciones.*',"estudiantes.id_estudiantes")
+        ->select('inscripciones.*',"cursos.titulo")
         ->get();
 
-        return view('inscripcion.index', ['inscripciones'=> $inscripciones]);
+        $instructores= DB::table('inscripciones')
+        ->join('instructores', 'inscripciones.id_instructores', '=', 'instructores.id_instructores')
+        ->select('inscripciones.*',"instructores.nombre")
+        ->get();
+        
+        $estudiantes= DB::table('inscripciones')
+        ->join('estudiantes', 'inscripciones.id_estudiantes', '=', 'estudiantes.id_estudiantes')
+        ->select('inscripciones.*',"estudiantes.nombre")
+        ->get();
+
+        return view('inscripcion.index', ['inscripciones' => $inscripciones,
+                                          'instructores' =>$instructores,
+                                          'estudiantes'=>$estudiantes]);
     }
 
     /**
